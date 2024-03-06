@@ -14,9 +14,9 @@ import (
 )
 
 const createPost = `-- name: CreatePost :one
-INSERT INTO posts (id, created_at, updated_at, title, description, published_at, url, feed_id)
+INSERT INTO posts (id, created_at, updated_at, title, description, published_at, url, book_id)
 VALUES ($1,$2, $3, $4, $5, $6, $7, $8)
-RETURNING id, created_at, updated_at, title, description, published_at, url, feed_id
+RETURNING id, created_at, updated_at, title, description, published_at, url, book_id
 `
 
 type CreatePostParams struct {
@@ -27,7 +27,7 @@ type CreatePostParams struct {
 	Description sql.NullString
 	PublishedAt time.Time
 	Url         string
-	FeedID      uuid.UUID
+	BookID      uuid.UUID
 }
 
 func (q *Queries) CreatePost(ctx context.Context, arg CreatePostParams) (Post, error) {
@@ -39,7 +39,7 @@ func (q *Queries) CreatePost(ctx context.Context, arg CreatePostParams) (Post, e
 		arg.Description,
 		arg.PublishedAt,
 		arg.Url,
-		arg.FeedID,
+		arg.BookID,
 	)
 	var i Post
 	err := row.Scan(
@@ -50,15 +50,15 @@ func (q *Queries) CreatePost(ctx context.Context, arg CreatePostParams) (Post, e
 		&i.Description,
 		&i.PublishedAt,
 		&i.Url,
-		&i.FeedID,
+		&i.BookID,
 	)
 	return i, err
 }
 
 const getPostsForUser = `-- name: GetPostsForUser :many
-SELECT posts.id, posts.created_at, posts.updated_at, posts.title, posts.description, posts.published_at, posts.url, posts.feed_id FROM posts
-JOIN feed_follows ON posts.feed_id = feed_follows.feed_id
-WHERE feed_follows.user_id = $1
+SELECT posts.id, posts.created_at, posts.updated_at, posts.title, posts.description, posts.published_at, posts.url, posts.book_id FROM posts
+JOIN user_follows ON posts.book_id = user_follows.book_id
+WHERE user_follows.user_id = $1
 ORDER BY posts.published_at DESC
 LIMIT $2
 `
@@ -85,7 +85,7 @@ func (q *Queries) GetPostsForUser(ctx context.Context, arg GetPostsForUserParams
 			&i.Description,
 			&i.PublishedAt,
 			&i.Url,
-			&i.FeedID,
+			&i.BookID,
 		); err != nil {
 			return nil, err
 		}

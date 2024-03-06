@@ -11,7 +11,7 @@ import (
 	"github.com/google/uuid"
 )
 
-type Feed struct {
+type Book struct {
 	ID            uuid.UUID
 	CreatedAt     time.Time
 	UpdatedAt     time.Time
@@ -21,12 +21,12 @@ type Feed struct {
 	LastFetchedAt sql.NullTime
 }
 
-type FeedFollow struct {
+type UserFollow struct {
 	ID        uuid.UUID
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	UserID    uuid.UUID
-	FeedID    uuid.UUID
+	BookID    uuid.UUID
 }
 
 type Post struct {
@@ -37,13 +37,17 @@ type Post struct {
 	Description sql.NullString
 	PublishedAt time.Time
 	Url         string
-	FeedID      uuid.UUID
+	BookID      uuid.UUID
 }
 
 type User struct {
-	ID        uuid.UUID
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	Name      string
-	ApiKey    string
+	ID        uuid.UUID 
+	CreatedAt time.Time 
+	UpdatedAt time.Time 
+	Name      string    
+	Email     string    
+	Password  string   
+	Image     string   
+	ApiKey    string   
 }
+

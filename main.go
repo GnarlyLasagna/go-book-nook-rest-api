@@ -43,7 +43,6 @@ func main() {
 		DB: db,
 	}
 
-//    go startScraping(db, 10, time.Minute)
 
 	router := chi.NewRouter()
 
@@ -64,12 +63,12 @@ func main() {
     v1Router.Post("/users", apiCfg.handlerCreateUser)
     v1Router.Get("/users", apiCfg.middlewareAuth(apiCfg.handlerGetUser))
 
-    v1Router.Post("/feeds", apiCfg.middlewareAuth(apiCfg.handlerCreateFeed))
-	v1Router.Get("/feeds", apiCfg.handlerGetFeeds)
+    v1Router.Post("/books", apiCfg.middlewareAuth(apiCfg.handlerCreateBook))
+	v1Router.Get("/books", apiCfg.handlerGetBooks)
 
-    v1Router.Post("/feed_follows", apiCfg.middlewareAuth(apiCfg.handlerCreateFeedFollow))
-	v1Router.Get("/feed_follows", apiCfg.middlewareAuth(apiCfg.handlerGetFeedFollows))
-    v1Router.Delete("/feed_follows/{feedFollowID}", apiCfg.middlewareAuth(apiCfg.handlerDeleteFeedFollow))
+    v1Router.Post("/user_follows", apiCfg.middlewareAuth(apiCfg.handlerCreateUserFollow))
+	v1Router.Get("/user_follows", apiCfg.middlewareAuth(apiCfg.handlerGetUserFollows))
+    v1Router.Delete("/user_follows/{bookFollowID}", apiCfg.middlewareAuth(apiCfg.handlerDeleteUserFollow))
 
     v1Router.Get("/posts", apiCfg.middlewareAuth(apiCfg.handlerGetPostsForUser))
 
