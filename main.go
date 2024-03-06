@@ -12,7 +12,7 @@ import (
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
     "github.com/go-chi/chi/v5"
-    "github.com/GnarlyLasagna/go-blog-aggregator/internal/database"
+    "github.com/GnarlyLasagna/go-book-nook-rest-api/internal/database"
 )
 
 type apiConfig struct {

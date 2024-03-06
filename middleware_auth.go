@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-    "github.com/GnarlyLasagna/go-blog-aggregator/internal/database"
-    "github.com/GnarlyLasagna/go-blog-aggregator/internal/auth"
+    "github.com/GnarlyLasagna/go-book-nook-rest-api/internal/database"
+    "github.com/GnarlyLasagna/go-book-nook-rest-api/internal/auth"
 )
 
 type authedHandler func(http.ResponseWriter, *http.Request, database.User)

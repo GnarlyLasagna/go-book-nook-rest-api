@@ -9,7 +9,7 @@ import (
 
     "github.com/go-chi/chi/v5"
 	"github.com/google/uuid"
-    "github.com/GnarlyLasagna/go-blog-aggregator/internal/database"
+    "github.com/GnarlyLasagna/go-book-nook-rest-api/internal/database"
 )
 
 func (apiCfg *apiConfig) handlerCreateFeedFollow(w http.ResponseWriter, r *http.Request, user database.User) {

@@ -1,4 +1,4 @@
-module github.com/GnarlyLasagna/go-blog-aggregator
+module github.com/GnarlyLasagna/go-book-nook-rest-api.git
 
 go 1.21.6
 
