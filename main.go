@@ -43,7 +43,7 @@ func main() {
 		DB: db,
 	}
 
-    go startScraping(db, 10, time.Minute)
+//    go startScraping(db, 10, time.Minute)
 
 	router := chi.NewRouter()
 

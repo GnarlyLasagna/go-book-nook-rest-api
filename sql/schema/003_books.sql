@@ -1,13 +1,15 @@
 -- +goose Up
 
-CREATE TABLE feeds (
+CREATE TABLE books (
     id UUID PRIMARY KEY,
     created_at  TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
-    name TEXT NOT NULL,
-    url TEXT UNIQUE NOT NULL,
+    title TEXT NOT NULL,
+    author TEXT NOT NULL,
+    image TEXT NOT NULL,
+    notes TEXT NOT NULL,
     user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE
 );
 
 -- +goose Down 
-DROP TABLE feeds;
+DROP TABLE books;
