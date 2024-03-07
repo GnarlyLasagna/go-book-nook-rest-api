@@ -29,6 +29,9 @@ func (apiCfg *apiConfig) handlerCreateUser(w http.ResponseWriter, r *http.Reques
 		CreatedAt: time.Now().UTC(),
 		UpdatedAt: time.Now().UTC(),
 		Name:      params.Name,
+		Email:     params.Email,
+		Password:  params.Password,
+		Image:     params.Image,
 	})
 	if err != nil {
 		respondWithError(w, 400, fmt.Sprintf("Couldn't create user: %v", err))
