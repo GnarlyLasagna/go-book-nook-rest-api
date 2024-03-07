@@ -68,9 +68,9 @@ func main() {
 
     v1Router.Post("/user_follows", apiCfg.middlewareAuth(apiCfg.handlerCreateUserFollow))
 	v1Router.Get("/user_follows", apiCfg.middlewareAuth(apiCfg.handlerGetUserFollows))
-    v1Router.Delete("/user_follows/{bookFollowID}", apiCfg.middlewareAuth(apiCfg.handlerDeleteUserFollow))
+    v1Router.Delete("/user_follows/{userFollowID}", apiCfg.middlewareAuth(apiCfg.handlerDeleteUserFollow))
 
-    v1Router.Get("/posts", apiCfg.middlewareAuth(apiCfg.handlerGetPostsForUser))
+//    v1Router.Get("/posts", apiCfg.middlewareAuth(apiCfg.handlerGetPostsForUser))
 
 
 	router.Mount("/v1", v1Router)	

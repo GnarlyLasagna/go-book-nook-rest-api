@@ -6,8 +6,8 @@ CREATE TABLE books (
     updated_at TIMESTAMP NOT NULL,
     title TEXT NOT NULL,
     author TEXT NOT NULL,
-    image TEXT NOT NULL,
-    notes TEXT NOT NULL,
+    image TEXT,
+    notes TEXT,
     user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE
 );
 
