@@ -37,6 +37,9 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 		arg.CreatedAt,
 		arg.UpdatedAt,
 		arg.Name,
+        arg.Email,
+        arg.Password,
+        arm.Image
 	)
 	var i User
 	err := row.Scan(
