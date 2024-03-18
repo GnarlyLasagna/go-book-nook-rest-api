@@ -25,6 +25,10 @@ type CreateUserParams struct {
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	Name      string
+	Email     string
+	Password  string
+	Image     string
+	
 }
 
 func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, error) {
