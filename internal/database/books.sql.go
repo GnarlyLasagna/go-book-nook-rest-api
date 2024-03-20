@@ -13,9 +13,9 @@ import (
 )
 
 const createBook = `-- name: CreateBook :one
-INSERT INTO books (id, created_at, updated_at, name, url, user_id)
-VALUES ($1,$2, $3, $4, $5, $6)
-RETURNING id, created_at, updated_at, name, url, user_id, last_fetched_at
+INSERT INTO books (id, created_at, updated_at, title, author, notes, image, user_id)
+VALUES ($1,$2, $3, $4, $5, $6, $7, $8 )
+RETURNING id, created_at, updated_at, title, author, notes, image, user_id,
 `
 
 type CreateBookParams struct {
@@ -34,8 +34,10 @@ func (q *Queries) CreateBook(ctx context.Context, arg CreateBookParams) (Book, e
 		arg.ID,
 		arg.CreatedAt,
 		arg.UpdatedAt,
-		arg.Name,
-		arg.Url,
+		arg.Title,
+		arg.Author,
+		arg.Notes,
+		arg.Image,
 		arg.UserID,
 	)
 	var i Book
@@ -43,10 +45,11 @@ func (q *Queries) CreateBook(ctx context.Context, arg CreateBookParams) (Book, e
 		&i.ID,
 		&i.CreatedAt,
 		&i.UpdatedAt,
-		&i.Name,
-		&i.Url,
+		&i.Title,
+		&i.Author,
+		&i.Notes,
+		&i.Image,
 		&i.UserID,
-		&i.LastFetchedAt,
 	)
 	return i, err
 }
