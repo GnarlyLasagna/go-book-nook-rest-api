@@ -13,15 +13,12 @@ import (
 
 func (apiCfg *apiConfig) handlerCreateBook(w http.ResponseWriter, r *http.Request, user database.User) {
 	type parameters struct {
-		Title string `json:"title"`
-		Name string `json:"name"`
-		URL  string `json:"url"`
-		Email string `json:"email"`
-		Password string `json:"password"`
-		Image string `json:"image"`
+		Title  string `json:"title"`
+		Author string `json:"author"`
+		Notes  string `json:"notes"`
+		Image  string `json:"image"`
 	}
 
-	}
 	decoder := json.NewDecoder(r.Body)
 
 	params := parameters{}
