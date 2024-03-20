@@ -32,8 +32,10 @@ func (apiCfg *apiConfig) handlerCreateBook(w http.ResponseWriter, r *http.Reques
 		ID:        uuid.New(),
 		CreatedAt: time.Now().UTC(),
 		UpdatedAt: time.Now().UTC(),
-		Name:      params.Name,
-		Url:       params.URL,
+		Title:     params.Title,
+		Author:    params.Author,
+		Notes:     params.Notes,
+		Image:     params.Image,
 		UserID:    user.ID,
 	})
 	if err != nil {

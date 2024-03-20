@@ -15,10 +15,11 @@ type Book struct {
 	ID            uuid.UUID
 	CreatedAt     time.Time
 	UpdatedAt     time.Time
-	Name          string
-	Url           string
+	Title         string
+	Author        string
+	Notes         string
+	Image         string
 	UserID        uuid.UUID
-	LastFetchedAt sql.NullTime
 }
 
 type UserFollow struct {

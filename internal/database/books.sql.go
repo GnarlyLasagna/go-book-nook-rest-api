@@ -15,7 +15,7 @@ import (
 const createBook = `-- name: CreateBook :one
 INSERT INTO books (id, created_at, updated_at, title, author, notes, image, user_id)
 VALUES ($1,$2, $3, $4, $5, $6, $7, $8 )
-RETURNING id, created_at, updated_at, title, author, notes, image, user_id,
+RETURNING id, created_at, updated_at, title, author, notes, image, user_id
 `
 
 type CreateBookParams struct {
@@ -55,7 +55,7 @@ func (q *Queries) CreateBook(ctx context.Context, arg CreateBookParams) (Book, e
 }
 
 const getBooks = `-- name: GetBooks :many
-SELECT id, created_at, updated_at, name, url, user_id, last_fetched_at FROM books
+SELECT id, created_at, updated_at, title, author, user_id FROM books
 `
 
 func (q *Queries) GetBooks(ctx context.Context) ([]Book, error) {
@@ -68,14 +68,16 @@ func (q *Queries) GetBooks(ctx context.Context) ([]Book, error) {
 	for rows.Next() {
 		var i Book
 		if err := rows.Scan(
-			&i.ID,
-			&i.CreatedAt,
-			&i.UpdatedAt,
-			&i.Name,
-			&i.Url,
-			&i.UserID,
-			&i.LastFetchedAt,
-		); err != nil {
+		&i.ID,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+		&i.Title,
+		&i.Author,
+		&i.Notes,
+		&i.Image,
+		&i.UserID,
+	)
+        err != nil {
 			return nil, err
 		}
 		items = append(items, i)
@@ -108,10 +110,9 @@ func (q *Queries) GetNextBooksToFetch(ctx context.Context, limit int32) ([]Book,
 			&i.ID,
 			&i.CreatedAt,
 			&i.UpdatedAt,
-			&i.Name,
-			&i.Url,
+			&i.Title,
+			&i.Author,
 			&i.UserID,
-			&i.LastFetchedAt,
 		); err != nil {
 			return nil, err
 		}
@@ -141,10 +142,9 @@ func (q *Queries) MarkBookAsFetched(ctx context.Context, id uuid.UUID) (Book, er
 		&i.ID,
 		&i.CreatedAt,
 		&i.UpdatedAt,
-		&i.Name,
-		&i.Url,
+		&i.Title,
+		&i.Author,
 		&i.UserID,
-		&i.LastFetchedAt,
 	)
 	return i, err
 }

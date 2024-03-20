@@ -37,8 +37,10 @@ type Book struct {
 	ID        uuid.UUID `json:"id"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
-	Name      string    `json:"name"`
-	Url       string    `json:"api_key"`
+	Title     string    `json:"title"`
+    Author    string    `json:"author"`
+	Notes     string    `json:"notes"`
+	Image     string    `json:"image"`
 	UserID    uuid.UUID `json:"user_id"`
 }
 
@@ -47,8 +49,10 @@ func databaseBookToBook(dbBook database.Book) Book {
 		ID:        dbBook.ID,
 		CreatedAt: dbBook.CreatedAt,
 		UpdatedAt: dbBook.UpdatedAt,
-		Name:      dbBook.Name,
-		Url:       dbBook.Url,
+		Title:     dbBook.Title,
+		Author:    dbBook.Author,
+		Notes:     dbBook.Notes,
+		Image:     dbBook.Image,
 		UserID:    dbBook.UserID,
 	}
 }
